@@ -1,103 +1,108 @@
 import Image from "next/image";
+//New Code
+import Link from 'next/link';
+//<Image src="/vercel.svg" alt="website icon" width={500} height={500}/>
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  <main className="">
+    <div id="first section" className="flex w-full items-center bg-white justify-between;">
+      <div className="flex items-start">
+        <Image src="/globe.svg" alt="website icon" width={50} height={50}/>
+        <h1 className="font-mono font-black text-2xl m-2">Placeholder</h1>
+      </div>
+      {/* Button Container */}
+      <div className="flex space-x-1 mt-4 items-end ml-auto">
+        {/* Sign Up button */}
+        <Link href="/signup">
+        <button className='btn' >Sign up</button>
+        </Link>
+        {/* Log In button */}
+        <Link href="/login">
+        <button className='btn' >Log In</button>
+        </Link>
+      </div>
     </div>
+    <div id="Second section" className="flex bg-black items-center justify-center min-h-screen">
+      <div className="flex-col"> {/* Word content contianer */}
+        <h1 className="font-mono text-white text-4xl m-2">Introducing Placeholder</h1><br/>
+        <p className="font-mono text-white text-xl m-2">DGribnax flurptil wendozz cramblee 
+          vinktor zibberlush neftwaddle. Skrimble drandox pheelom twizzlequap jarnook blanterflee. 
+          Quorflig zendoop frabblewitz, minkthra jubbledorp snarfle. Yintrop kledjask murflobbin 
+          drayzunk, trallopee vinkshardle bloont.</p>
+      </div>
+    
+    </div>
+
+    <div id="third section">
+
+          <div id="text section">
+            <div id ="title" className="sectitle">
+              <h2>Section Title</h2>
+            </div>
+            <div id="description" className=" w-2/3 mx-auto">
+              <div id="blurb" className="blurb">
+                <p>Gribnax flurptil wendozz cramblee vinktor zibberlush neftwaddle.
+                   Skrimble drandox pheelom twizzlequap jarnook blanterflee. Quorflig 
+                   zendoop frabblewitz, minkthra jubbledorp snarfle. Yintrop kledjask 
+                   murflobbin drayzunk, trallopee vinkshardle bloont.</p>
+              </div>
+            </div>
+          </div>
+          <hr className="line"></hr>
+
+          <div id="text section">
+            <div id ="title" className="sectitle">
+              <h2>Section Title</h2>
+            </div>
+            <div id="description" className=" w-2/3 mx-auto">
+              <div id="blurb" className="blurb">
+                <p>Gribnax flurptil wendozz cramblee vinktor zibberlush neftwaddle.
+                   Skrimble drandox pheelom twizzlequap jarnook blanterflee. Quorflig 
+                   zendoop frabblewitz, minkthra jubbledorp snarfle. Yintrop kledjask 
+                   murflobbin drayzunk, trallopee vinkshardle bloont.</p>
+              </div>
+            </div>
+          </div>
+          <hr className="line"></hr>
+
+          <div id="text section">
+            <div id ="title" className="sectitle">
+              <h2>Section Title</h2>
+            </div>
+            <div id="description" className=" w-2/3 mx-auto">
+              <div id="blurb" className="blurb">
+                <p>Gribnax flurptil wendozz cramblee vinktor zibberlush neftwaddle.
+                   Skrimble drandox pheelom twizzlequap jarnook blanterflee. Quorflig 
+                   zendoop frabblewitz, minkthra jubbledorp snarfle. Yintrop kledjask 
+                   murflobbin drayzunk, trallopee vinkshardle bloont.</p>
+              </div>
+            </div>
+          </div>
+          <hr className="line"></hr>
+
+          <div id="text section">
+            <div id ="title" className="sectitle">
+              <h2>Section Title</h2>
+            </div>
+            <div id="description" className=" w-2/3 mx-auto">
+              <div id="blurb" className="blurb">
+                <p>Gribnax flurptil wendozz cramblee vinktor zibberlush neftwaddle.
+                   Skrimble drandox pheelom twizzlequap jarnook blanterflee. Quorflig 
+                   zendoop frabblewitz, minkthra jubbledorp snarfle. Yintrop kledjask 
+                   murflobbin drayzunk, trallopee vinkshardle bloont.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex bg-black justify-end items-center h-25">
+            {/* Contact Us button */}
+            <Link href="/contactus">
+            <button className='btn' >Contact Us</button>
+            </Link>
+          </div>
+
+    </div>
+  </main>
   );
 }
