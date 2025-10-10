@@ -2,8 +2,8 @@
 
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #E6E6FA;
+  --foreground: #CC5500;
 }
 
 @theme inline {
@@ -15,8 +15,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #CC5500;
+    --foreground: #000000;
   }
 }
 
@@ -52,4 +52,16 @@ body {
 
 .line {
   @apply w-250 mx-auto;
+}
+
+@keyframes lavenderToBurnt {
+  0% { background-color: #E6E6FA; }
+  100% { background-color: #CC5500; }
+}
+
+@layer utilities {
+  .animate-lavender-burnt {
+    background-color: #E6E6FA;
+    animation: lavenderToBurnt 5s ease-in-out infinite alternate;
+  }
 }
