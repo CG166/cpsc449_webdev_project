@@ -51,7 +51,7 @@ body {
 }
 
 .line {
-  @apply w-250 mx-auto;
+  @apply w-250 mx-auto h-1 bg-white border-0 border-black;
 }
 
 @keyframes lavenderToBurnt {
