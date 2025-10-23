@@ -86,7 +86,7 @@ export default function Home() {
 
   return (
     // Apply the animated background fade here:
-    <main className="min-h-screen animate-lavender-burnt">
+    <main className="min-h-screen bg-[#CC5500]">
       <Header />
 
       {/* Second section: remove bg-black so the fade is visible */}

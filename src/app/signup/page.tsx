@@ -1,7 +1,7 @@
 export default function Signup() {
   return (
     <main>
-        <div className="bg-black w-full min-h-screen flex justify-center items-center;">
+        <div className="bg-purple-300 w-full min-h-screen flex justify-center items-center;">
             <div className="bg-white p-8 rounded flex flex-col w-[300px] self-center max-h-[90vh] overflow-auto;">
                 <h1 className="text-black text-2xl font-mono;" >Create an Account</h1>
                 <form>

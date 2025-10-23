@@ -1,15 +1,13 @@
 import Header from "../../header/page";
+import ProductDisplay from "@/app/components/ProductDisplay";
+
 export default function Mens() {
   return (
     <div>
-        <Header />
-        <main>
-            <div id="description" className=" w-2/3 mx-auto">
-              <div id="blurb" className="blurb">
-                <p>Mens clothing section.</p>
-              </div>
-            </div>
-        </main>
+      <div className="bg-orange-600 w-full">
+        <h1 className="flex justify-center text-white drop-shadow-md font-bold text-4xl pt-10">Mens Clothing</h1>
+      </div>
+      <ProductDisplay/>
     </div>
   );
 }

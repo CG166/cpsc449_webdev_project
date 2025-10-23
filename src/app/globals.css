@@ -34,7 +34,7 @@ body {
 }
 
 .btn {
-  @apply px-4 h-10 m-4 rounded-full text-lg bg-blue-500 border-4 border-blue-800 hover:bg-blue-800 text-white text-center
+  @apply px-4 h-10 m-4 rounded-full text-lg bg-orange-500 border-4 border-orange-600 hover:bg-orange-400 text-white text-center
   font-bold flex items-center justify-center;
 }
 
