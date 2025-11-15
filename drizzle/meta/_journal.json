@@ -15,6 +15,13 @@
       "when": 1760793046899,
       "tag": "0001_dear_thunderball",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1762624739821,
+      "tag": "0002_glamorous_gamma_corps",
+      "breakpoints": true
     }
   ]
 }
