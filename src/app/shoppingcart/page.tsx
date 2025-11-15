@@ -1,6 +1,7 @@
 import { getUserID } from "../../../lib/cookie"
 import { getAllProductsByUser } from "../actions/shoppingCart";
 import ProductDisplayCard from "../components/ProductDisplayCard";
+import Link from "next/link";
 
 
 export default async function shoppingcart() {
@@ -27,10 +28,11 @@ export default async function shoppingcart() {
     
     return (
         <main>
-            <h1>Shopping cart</h1>
+            <h1 className="text-center text-4xl text-black pt-10" >Shopping cart</h1>
             {productIDs.map((id) => (
                 <ProductDisplayCard key={id} productID={id} UID={userID}/>
             ))}
+            <Link href="/checkout" className="btn">Checkout</Link>
         </main>
     )
 }

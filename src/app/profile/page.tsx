@@ -16,11 +16,10 @@ export default async function profile() {
 
     return (
         <main>
-            <h1>User Account Info</h1>
-            <h2>Name: {user.name}</h2>
-            <h2>Email: {user.email}</h2>
-            <h2>Username: {user.username}</h2>
-            <h2>Password: {user.password}</h2>
+            <h1 className="text-center text-4xl text-black pt-10">User Account Info</h1>
+            <h2 className="text-2xl text-black p-5">Name: {user.name}</h2>
+            <h2 className="text-2xl text-black p-5">Email: {user.email}</h2>
+            <h2 className="text-2xl text-black p-5">Username: {user.username}</h2>
         </main>
     );
 

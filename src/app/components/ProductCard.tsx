@@ -32,7 +32,7 @@ export default function ProductCard ({ id, name, description, price, stock, User
                     <h1 className="text-black text-l font-light;" >Price: { price }</h1>
                     <h1 className="text-black text-l font-light;" >In Stock: { stock }</h1>
                     <p className="text-black text-m font-light;" >{ description }</p> 
-                    <button onClick={() => addProduct()} >Add</button>
+                    <button className="btn" onClick={() => addProduct()} >Add</button>
                 </div>     
         </div>
     </div>
