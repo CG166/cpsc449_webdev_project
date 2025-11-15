@@ -30,7 +30,14 @@ export default function ProductDisplay () {
         try {
             const res = await fetch('/api/products');
             const data = await res.json();
-            setproducts(data);
+            console.log("fetched products", data);
+            if (Array.isArray(data)) {
+                setproducts(data);
+            } else if (Array.isArray(data.products)) {
+                setproducts(data.products);
+            } else {
+                setproducts([]);
+            }
         } catch (error) {
             console.error('Error fetching products:', error);
         } finally {
