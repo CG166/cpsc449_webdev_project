@@ -7,7 +7,7 @@ export default function Womens() {
       <div className="bg-orange-600 w-full">
         <h1 className="flex justify-center text-white drop-shadow-md font-bold text-4xl pt-10">Womens Clothing</h1>
       </div>
-      <ProductDisplay/>
+      <ProductDisplay category="WOMEN"/>
     </div>
   );
 }

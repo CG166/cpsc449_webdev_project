@@ -1,8 +1,6 @@
 import { int, mysqlEnum, mysqlTable, varchar, decimal}
  from "drizzle-orm/mysql-core";
 
- //Definitions
- export const categoryEnum = mysqlEnum("category", ['women', 'men', 'kid']);
 
  //Creating user
  export const User = mysqlTable("users" , {
@@ -19,5 +17,24 @@ import { int, mysqlEnum, mysqlTable, varchar, decimal}
    description: varchar("description", { length:255 }).notNull(),
    stock: int("stock").notNull(),
    price: decimal("price", { precision: 10, scale: 2 }).notNull(),
-   category: categoryEnum.notNull()
+   category: mysqlEnum("category", ['WOMEN', 'MEN', 'KIDS'] as const)
  });
+
+ export const ShoppingCart = mysqlTable("shopping_cart", {
+   id: int("id").autoincrement().primaryKey(),
+   userId: int("userid")
+    .notNull()
+    .references(() => User.id),
+ });
+
+ export const ShoppingCartItems = mysqlTable("shoppingcart_item", {
+  id: int("id").autoincrement().primaryKey(),
+  cartId: int("cart_id")
+    .notNull()
+    .references(() => ShoppingCart.id),
+  productId: int("product_id")
+    .notNull()
+    .references(() => Products.id),
+});
+
+ export type pCategory = "WOMEN" | "MEN" | "KIDS";
