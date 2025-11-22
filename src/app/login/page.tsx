@@ -28,7 +28,7 @@ export default function Login() {
 
       if(loginAttempt.success){
         reset();
-        alert("Login Succesful!");
+        alert("Login Successful!");
         console.log("Login Successful!")
         router.push("/");
       } else {

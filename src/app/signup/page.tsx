@@ -1,8 +1,11 @@
 'use client'
 import { useState } from 'react';
 import { createUser } from '../actions/users';
+import { routerServerGlobal } from 'next/dist/server/lib/router-utils/router-server-context';
+import { useRouter } from 'next/navigation';
 
 export default function Signup() {
+  const router = useRouter();
   const[data, setData] = useState({ name: '', email: '', username: '' , password: ''});
   
   const updateField = (field: string, value: string) => {
@@ -24,6 +27,7 @@ export default function Signup() {
     reset();
     alert("New User Created!");
     console.log("User Creation Successful!")
+    router.push('../');
 
   }
 
