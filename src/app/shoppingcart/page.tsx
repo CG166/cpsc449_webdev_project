@@ -29,9 +29,9 @@ export default async function shoppingcart() {
     return (
         <main>
             <h1 className="text-center text-4xl text-black pt-10" >Shopping cart</h1>
-            {productIDs.map((id) => (
-                <ProductDisplayCard key={id} productID={id} UID={userID}/>
-            ))}
+            {productIDs.map((id, index) => (
+                        <ProductDisplayCard key={`${id}-${index}`} productID={id} UID={userID}/>
+                      ))}
             <Link href="/checkout" className="btn">Checkout</Link>
         </main>
     )

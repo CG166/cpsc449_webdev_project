@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, varchar, decimal}
+import { int, mysqlEnum, mysqlTable, varchar, decimal, timestamp, json}
  from "drizzle-orm/mysql-core";
 
 
@@ -35,6 +35,19 @@ import { int, mysqlEnum, mysqlTable, varchar, decimal}
   productId: int("product_id")
     .notNull()
     .references(() => Products.id),
+});
+
+export const Orders = mysqlTable("orders", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("user_id").notNull(),
+  products: json("products").notNull(),
+  firstname: varchar("firstname", { length: 100 }).notNull(),
+  lastname: varchar("lastname", { length: 100 }).notNull(),
+  email: varchar("email", { length: 100 }).notNull(),
+  address: varchar("address", { length: 255 }).notNull(),
+  city: varchar("city", { length: 100 }).notNull(),
+  country: varchar("country", { length: 100 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
  export type pCategory = "WOMEN" | "MEN" | "KIDS";
