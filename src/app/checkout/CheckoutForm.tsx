@@ -36,7 +36,7 @@ export default function CheckoutForm({ productIDs, userID }: CheckoutFormProps) 
 
     setIsSubmitting(true);
 
-    await createOrder(userID, productIDs, data);
+    await createOrder(userID, data);
 
     router.push("/thankyoupage");
   }

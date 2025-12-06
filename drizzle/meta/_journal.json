@@ -29,6 +29,13 @@
       "when": 1764653674702,
       "tag": "0003_graceful_sleeper",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1764979684921,
+      "tag": "0004_fuzzy_malice",
+      "breakpoints": true
     }
   ]
 }

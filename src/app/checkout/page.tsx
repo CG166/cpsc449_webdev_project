@@ -20,8 +20,8 @@ export default async function CheckoutPage() {
       <section>
         <h2 className="text-2xl font-semibold mb-4 text-black">Your Items</h2>
         <div className="flex flex-col gap-4">
-          {productIDs.map((id) => (
-            <ProductDisplayCard key={id} productID={id} UID={userID}/>
+          {productIDs.map((id, index) => (
+            <ProductDisplayCard key={`${id}-${index}`} productID={id} UID={userID}/>
           ))}
         </div>
       </section>
