@@ -45,5 +45,5 @@ export async function getUserInfo(id: number) {
 }
 
 export async function updateUserInfo(id: number, name: string, email: string, username: string) {
-    return await db.update(User).set({name, email, username}).where(eq(User.id, id))
+    await db.update(User).set({name, email, username}).where(eq(User.id, id))
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getUserID } from "../../../lib/cookie"
 import { getUserInfo } from "../actions/users";
 
@@ -20,6 +21,7 @@ export default async function profile() {
             <h2 className="text-2xl text-black p-5">Name: {user.name}</h2>
             <h2 className="text-2xl text-black p-5">Email: {user.email}</h2>
             <h2 className="text-2xl text-black p-5">Username: {user.username}</h2>
+            <Link href="/updateprofile" className="btn">Update Profile Info</Link>
         </main>
     );
 

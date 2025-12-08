@@ -1,4 +1,5 @@
-import { int, mysqlEnum, mysqlTable, varchar, decimal}
+import { sql } from "drizzle-orm";
+import { int, mysqlEnum, mysqlTable, varchar, decimal, date, datetime}
  from "drizzle-orm/mysql-core";
 
 
@@ -35,6 +36,46 @@ import { int, mysqlEnum, mysqlTable, varchar, decimal}
   productId: int("product_id")
     .notNull()
     .references(() => Products.id),
+});
+
+export const PaymentMethod = mysqlTable("payment_method", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userid")
+    .notNull()
+    .references(() => User.id),
+  cardHolderName: varchar("card_holder_name", { length: 100 }).notNull(),
+  cardNumber: int("card_number").notNull(),
+  expirDate: date("expir_date"),
+  cvc: int("cvc").notNull()
+});
+
+export const DeliveryAddress = mysqlTable("delivery_address", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userid")
+    .notNull()
+    .references(() => User.id),
+  addressLine: varchar("address_line", { length: 100 }).notNull(),
+  country: varchar("country", { length: 100 }).notNull(),
+  state: varchar("state", { length: 100 }).notNull(),
+  city: varchar("city", { length: 100 }).notNull(),
+  cvc: int("cvc").notNull()
+});
+
+export const Orders = mysqlTable("orders", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userid")
+    .notNull()
+    .references(() => User.id),
+  productId: int("product_id")
+    .notNull()
+    .references(() => Products.id),
+  paymentMethodId: int("payment_method_id")
+    .notNull()
+    .references(() => PaymentMethod.id),
+  DeliveryAddressId: int("delivery_address_id")
+    .notNull()
+    .references(() => DeliveryAddress.id),
+  orderedAt: datetime("ordered_at").notNull().default(sql`CURRENT_TIMESTAMP`)
 });
 
  export type pCategory = "WOMEN" | "MEN" | "KIDS";
