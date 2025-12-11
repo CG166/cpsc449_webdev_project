@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { int, mysqlEnum, mysqlTable, varchar, decimal, date, datetime}
+import { int, mysqlEnum, mysqlTable, varchar, decimal, datetime}
  from "drizzle-orm/mysql-core";
 
 
@@ -44,9 +44,9 @@ export const PaymentMethod = mysqlTable("payment_method", {
     .notNull()
     .references(() => User.id),
   cardHolderName: varchar("card_holder_name", { length: 100 }).notNull(),
-  cardNumber: int("card_number").notNull(),
-  expirDate: date("expir_date"),
-  cvc: int("cvc").notNull()
+  cardNumber: varchar("card_number", { length: 100 }).notNull(),
+  expirDate: varchar("expir_date", { length:100 }).notNull(),
+  cvc: varchar("cvc", { length: 100 }).notNull(),
 });
 
 export const DeliveryAddress = mysqlTable("delivery_address", {
@@ -58,7 +58,7 @@ export const DeliveryAddress = mysqlTable("delivery_address", {
   country: varchar("country", { length: 100 }).notNull(),
   state: varchar("state", { length: 100 }).notNull(),
   city: varchar("city", { length: 100 }).notNull(),
-  cvc: int("cvc").notNull()
+  zipcode: varchar("zipcode", { length: 100 }).notNull()
 });
 
 export const Orders = mysqlTable("orders", {

@@ -8,18 +8,18 @@ type ProductCardProps = {
     description: string,
     stock: number,
     price: number,
-    UserID: number;
+    UserID: number | null;
     ProductID: number;
 
 };
 
-export default function ProductCard ({ id, name, description, price, stock, UserID, ProductID}: ProductCardProps) {
-    console.log("PC-UID:", UserID);
-    console.log("PC-PID", ProductID);
+export default function ProductCard ({ name, description, price, stock, UserID, ProductID}: ProductCardProps) {
 
     async function addProduct() {
-                if(UserID) {
+                if(UserID && ProductID) {
                     await addProductToCart(UserID, ProductID);
+                } else {
+                    alert("Please log in to add to cart!");
                 }
             }
     

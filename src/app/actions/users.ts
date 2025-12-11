@@ -11,6 +11,7 @@ import { redirect } from "next/navigation";
 export async function createUser(name: string, email: string, username: string, password: string) {
     const hashedPassword = await bcrypt.hash(password, 10);
     await db.insert(User).values({name, email, username, password: hashedPassword});
+    redirect("/");
 }
 
 export async function loginUser(username: string, password: string) {
@@ -27,7 +28,7 @@ export async function loginUser(username: string, password: string) {
     const userCookies = await cookies();
     userCookies.set("userID", String(user.id), {
         httpOnly: true,
-        path: "/",
+        path: "/login",
         maxAge: 60 * 60 * 24 * 7
     });
 

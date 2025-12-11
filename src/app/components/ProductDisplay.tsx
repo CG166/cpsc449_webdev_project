@@ -15,20 +15,6 @@ export default async function ProductDisplay ({category} : ProductDisplayProps) 
     const products = await getProductsByCategory(category);
 
     const userID = await getUserID();
-        if (!userID){
-            return null;
-        }
-
-    console.log("PD_UID:",userID)
-
-    //async function testAPI() {
-        //if(userID) {
-            //await addProductToCart(userID, products[0].id);
-        //}
-    //}
-
-    //testAPI();
-
 
     return(
     <div className="bg-orange-600 w-full overflow-x-hidden">

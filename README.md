@@ -34,3 +34,28 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Installation Instructions
+### Setting up drizzle-orm
+npm install drizzle-orm mysql2
+npm install -D drizzle-kit
+
+### Set Up MYSQL
+sudo apt update
+sudo apt install mysql-server
+sudo systemctl start mysql
+sudo systemctl enable mysql
+
+sudo snap install mysql-workbench-community
+
+sudo mysql
+*Set password to 'password'
+
+## Populate products with startupSQL.sql contents
+
+## Install bcryptjs
+npm install bcryptjs
+
+
+
+
