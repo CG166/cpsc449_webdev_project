@@ -8,7 +8,7 @@ type ProductCardProps = {
     description: string,
     stock: number,
     price: number,
-    UserID: number | null;
+    UserID?: number;
     ProductID: number;
 
 };

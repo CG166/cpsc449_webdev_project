@@ -28,7 +28,7 @@ export async function loginUser(username: string, password: string) {
     const userCookies = await cookies();
     userCookies.set("userID", String(user.id), {
         httpOnly: true,
-        path: "/login",
+        path: "/",
         maxAge: 60 * 60 * 24 * 7
     });
 
