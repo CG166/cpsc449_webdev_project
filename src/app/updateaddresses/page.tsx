@@ -2,8 +2,10 @@
 import Link from "next/link";
 import { useState } from 'react';
 import { addAddress } from '../actions/deliveryAddress';
+import { useRouter } from 'next/navigation';
 
 export default function AddAddress() {
+    const router = useRouter();
     const[data, setData] = useState({ addressLine: '', country: '', state: '' , city: '', zipcode: ''});
       
       const updateField = (field: string, value: string) => {
@@ -24,15 +26,14 @@ export default function AddAddress() {
         await addAddress(data.addressLine, data.country, data.state, data.city, data.zipcode);
         reset();
         alert("New Delivery Address Created!");
+
+        router.push('/profile');
     
       }
     return (
     <main className="bg-purple-300 w-full min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded flex flex-col w-[80vh] h-[90vh] overflow-auto shadow-lg">
         <div className="flex items-center justify-between mb-6">
-          <Link href="/profile" className="text-red-500 text-3xl font-bold hover:text-gray-700 transition">
-            &lt;
-          </Link>
           <h1 className="text-orange text-3xl font-mono text-center flex-1">Update Address</h1>
           <div className="w-6"></div>
       </div>

@@ -20,3 +20,14 @@ export async function getAllAddressesByUser(id: number) {
     return addresses
 }
 
+export async function deleteAddress(id: number) {
+  try {
+    await db.delete(DeliveryAddress).where(eq(DeliveryAddress.id, id));
+    return true;
+  } catch (error) {
+    console.error("Error deleting address:", error);
+    throw error;
+  }
+}
+
+

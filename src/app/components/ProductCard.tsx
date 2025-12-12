@@ -1,6 +1,8 @@
 'use client';
 import { addProductToCart } from "../actions/shoppingCart";
 //import { useEffect } from "react";
+import Image from "next/image";
+import tshirtImg from "../images/mens/classic_t-shirt.avif"
 
 type ProductCardProps = {
     id: number,
@@ -10,10 +12,11 @@ type ProductCardProps = {
     price: number,
     UserID?: number;
     ProductID: number;
+    imageUrl: string;
 
 };
 
-export default function ProductCard ({ name, description, price, stock, UserID, ProductID}: ProductCardProps) {
+export default function ProductCard ({ name, description, price, stock, UserID, ProductID, imageUrl}: ProductCardProps) {
 
     async function addProduct() {
                 if(UserID && ProductID) {
@@ -33,6 +36,7 @@ export default function ProductCard ({ name, description, price, stock, UserID, 
                     <h1 className="text-black text-l font-light;" >In Stock: { stock }</h1>
                     <p className="text-black text-m font-light;" >{ description }</p> 
                     <button className="btn" onClick={() => addProduct()} >Add</button>
+                    <Image src={imageUrl} alt={name} width={240} height={240}/>
                 </div>     
         </div>
     </div>

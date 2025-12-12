@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import AddCard from "./AddCard";
 import AddressDisplayCard from "./AddressDisplayCard";
 import CardDisplayCard from "./CardDisplayCard";
 import { useState } from "react";
+import { deleteAddress } from "../actions/deliveryAddress";
 
 interface Address {
   id: number;
@@ -34,12 +34,28 @@ interface ProfileTabsProps {
   cards: Card[];
 }
 
-export default function ProfileTabs({ user, addresses, cards }: ProfileTabsProps) {
+export default function ProfileTabs({ user, addresses: initialAddresses, cards: initialCards }: ProfileTabsProps) {
   const [activeTab, setActiveTab] = useState("account");
+  const [addresses, setAddresses] = useState(initialAddresses);
+  const [cards, setCards] = useState(initialCards);
+
+  const handleDeleteAddress = async (id: number) => {
+    const confirmed = confirm("Are you sure you want to delete this address?");
+    if (!confirmed) return;
+
+    try {
+      await deleteAddress(id);
+      setAddresses(addresses.filter((a) => a.id !== id));
+    } catch (error) {
+      console.error("Failed to delete address:", error);
+      alert("Failed to delete address.");
+    }
+  };
+
 
   return (
     <div className="flex p-6 gap-6">
-      <div className="flex flex-col gap-2 border-r pr-4">
+      <div className="flex flex-col gap-2 border-r pr-4 mt-10">
         <button
           className={`px-4 py-2 text-left ${
             activeTab === "account" ? "border-l-4 border-blue-500 font-bold" : ""
@@ -48,7 +64,6 @@ export default function ProfileTabs({ user, addresses, cards }: ProfileTabsProps
         >
           User Info
         </button>
-
         <button
           className={`px-4 py-2 text-left ${
             activeTab === "addresses" ? "border-l-4 border-blue-500 font-bold" : ""
@@ -57,7 +72,6 @@ export default function ProfileTabs({ user, addresses, cards }: ProfileTabsProps
         >
           Delivery Addresses
         </button>
-
         <button
           className={`px-4 py-2 text-left ${
             activeTab === "cards" ? "border-l-4 border-blue-500 font-bold" : ""
@@ -70,36 +84,29 @@ export default function ProfileTabs({ user, addresses, cards }: ProfileTabsProps
 
       <div className="flex-1">
         {activeTab === "account" && (
-          <div className="bg-white shadow rounded p-8 w-full max-w-3xl mx-auto mb-6">
+          <div className="bg-white shadow rounded p-8 w-full max-w-3xl mx-auto mb-6 mt-10">
             <h1 className="text-4xl mb-6 font-bold text-center">User Account Info</h1>
-
             <div className="py-2 border-b flex justify-between">
               <span className="font-semibold">Name:</span>
               <span>{user.name}</span>
             </div>
-
             <div className="py-2 border-b flex justify-between">
               <span className="font-semibold">Email:</span>
               <span>{user.email}</span>
             </div>
-
             <div className="py-2 flex justify-between">
               <span className="font-semibold">Username:</span>
               <span>{user.username}</span>
             </div>
-
             <div className="flex justify-center mt-6">
-              <Link href="/updateprofile" className="btn">
-                Edit
-              </Link>
+              <Link href="/updateprofile" className="btn">Edit</Link>
             </div>
           </div>
         )}
 
         {activeTab === "addresses" && (
-          <div className="bg-white shadow rounded p-8 w-full max-w-3xl mx-auto mb-6">
+          <div className="bg-white shadow rounded p-8 w-full max-w-3xl mx-auto mb-6 mt-10">
             <h1 className="text-4xl mb-6 font-bold text-center">Delivery Addresses</h1>
-
             {addresses.length === 0 ? (
               <p>No saved addresses.</p>
             ) : (
@@ -107,38 +114,41 @@ export default function ProfileTabs({ user, addresses, cards }: ProfileTabsProps
                 {addresses.map((address, index) => (
                   <div
                     key={address.id}
-                    className={`py-4 ${index < addresses.length - 1 ? "border-b" : ""}`}
+                    className={`py-4 flex justify-between items-center ${index < addresses.length - 1 ? "border-b" : ""}`}
                   >
                     <AddressDisplayCard {...address} />
+                    <button
+                      onClick={() => handleDeleteAddress(address.id)}
+                      className="text-red-500 font-semibold ml-4"
+                    >
+                      Delete
+                    </button>
                   </div>
                 ))}
               </div>
             )}
-
             <div className="flex justify-center mt-6">
-              <Link href="/updateaddresses" className="btn">
-                Edit
-              </Link>
+              <Link href="/updateaddresses" className="btn">Add</Link>
             </div>
           </div>
         )}
 
         {activeTab === "cards" && (
-          <div className="bg-white shadow rounded p-8 w-full max-w-3xl mx-auto">
+          <div className="bg-white shadow rounded p-8 w-full max-w-3xl mx-auto mt-10">
             <h1 className="text-4xl mb-6 font-bold text-center">Payment Methods</h1>
             {cards.length === 0 ? (
               <p>No saved cards.</p>
             ) : (
               <div className="space-y-4">
                 {cards.map((card) => (
-                  <CardDisplayCard key={card.id} {...card} />
+                  <div key={card.id} className="flex justify-between items-center">
+                    <CardDisplayCard {...card} />
+                  </div>
                 ))}
               </div>
             )}
             <div className="flex justify-center mt-6">
-              <Link href="/updatecard" className="btn">
-                Edit
-              </Link>
+              <Link href="/updatecard" className="btn">Add</Link>
             </div>
           </div>
         )}

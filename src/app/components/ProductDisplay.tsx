@@ -31,6 +31,7 @@ export default async function ProductDisplay ({category} : ProductDisplayProps) 
                     description={product.description}
                     ProductID={product.id}
                     UserID={userID}
+                    imageUrl={product.imageUrl}
                     />
                 </div>
             ))} </>

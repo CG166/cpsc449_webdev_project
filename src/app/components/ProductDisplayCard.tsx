@@ -16,6 +16,7 @@ type Product = {
   stock: number;
   price: number;
   category: "WOMEN" | "MEN" | "KIDS";
+  imageUrl: string;
 };
 
 export default function ProductDisplayCard({productID, UID } : ProductDisplayCardProps) {
@@ -31,6 +32,7 @@ export default function ProductDisplayCard({productID, UID } : ProductDisplayCar
             stock: product.stock,
             price: Number(product.price),
             category: product.category ?? "WOMEN",
+            imageUrl: product.imageUrl
         };
         setProduct(formattedProduct);
         }
@@ -59,7 +61,7 @@ export default function ProductDisplayCard({productID, UID } : ProductDisplayCar
         <div className="bg-white rounded-3xl shadow-lg min-h-[240px] min-w-[240px] w-full">
                 <div className="p-8"> 
                     <h1 className="text-black text-xl font-mono font-light;" >{product.name}</h1>
-                    <h1 className="text-black text-l font-light;" >Price: {product.price}</h1>
+                    <h1 className="text-black text-l font-light;" >Price: ${product.price}</h1>
                     <h1 className="text-black text-l font-light;" >In Stock: {product.stock}</h1>
                     <p className="text-black text-m font-light;" >{product.description}</p>
                     <div>

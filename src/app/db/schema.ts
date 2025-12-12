@@ -18,7 +18,8 @@ import { int, mysqlEnum, mysqlTable, varchar, decimal, datetime}
    description: varchar("description", { length:255 }).notNull(),
    stock: int("stock").notNull(),
    price: decimal("price", { precision: 10, scale: 2 }).notNull(),
-   category: mysqlEnum("category", ['WOMEN', 'MEN', 'KIDS'] as const)
+   category: mysqlEnum("category", ['WOMEN', 'MEN', 'KIDS'] as const),
+   imageUrl: varchar("image_url", { length: 255 }).notNull()
  });
 
  export const ShoppingCart = mysqlTable("shopping_cart", {

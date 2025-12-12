@@ -2,8 +2,10 @@
 import Link from "next/link";
 import { useState } from 'react';
 import { addCard } from '../actions/card';
+import { useRouter } from 'next/navigation';
 
 export default function AddCard() {
+  const router = useRouter();
   const [data, setData] = useState({ cardHolderName: '', cardNumber: '', expirDate: '', cvc: '' });
   
   const updateField = (field: string, value: string) => {
@@ -32,6 +34,8 @@ export default function AddCard() {
     await addCard(data.cardHolderName, data.cardNumber, data.expirDate, data.cvc);
     reset();
     alert("New payment method added!");
+
+    router.push('/profile');
   }
 
   return (
@@ -39,9 +43,6 @@ export default function AddCard() {
       <div className="bg-white p-8 rounded shadow-lg flex flex-col w-[80vh] max-w-3xl overflow-auto">
         
         <div className="flex items-center justify-between mb-6">
-          <Link href="/profile" className="text-red-500 text-3xl font-bold hover:text-gray-700 transition">
-            &lt;
-          </Link>
           <h1 className="text-orange text-3xl font-mono text-center flex-1">Add Payment Method</h1>
           <div className="w-6"></div>
         </div>

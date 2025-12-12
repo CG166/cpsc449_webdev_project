@@ -1,16 +1,15 @@
 "use client";
 import { PaymentMethod } from "../db/schema";
 import { useEffect, useState } from "react";
-import CardDisplayCard from "./CardDisplayCard";
 
-type PaymentMethod = typeof PaymentMethod.$inferSelect;
+type Card = typeof PaymentMethod.$inferSelect;
 
 type SelectCardProps = {
-  cards: PaymentMethod[];
+  cards: Card[];
   onSelect?: (id: number | null) => void;
 };
 
-export default function SelectCard({ cards, onSelect} : SelectCardProps) {
+export default function SelectCard({ cards, onSelect }: SelectCardProps) {
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
 
   useEffect(() => {
@@ -18,22 +17,21 @@ export default function SelectCard({ cards, onSelect} : SelectCardProps) {
   }, [selectedCard, onSelect]);
 
   return (
-    <>
-      {/* Addresses */}
-      <div className="m-5">
+    <div className="m-5 bg-white p-4 rounded-md shadow">
+      <select
+        className="border rounded-md p-2 w-full bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value={selectedCard ?? ""}
+        onChange={(e) => setSelectedCard(Number(e.target.value))}
+      >
+        <option value="" disabled>
+          Select a card
+        </option>
         {cards.map((card) => (
-          <div
-            key={card.id}
-            onClick={() => setSelectedCard(card.id)}
-            className={`p-2 rounded-md cursor-pointer transition-all ${selectedCard === card.id ? "ring-2 ring-blue-500" : "ring-1 ring-gray-300"}`}
-          >
-            <CardDisplayCard
-                cardHolderName={card.cardHolderName}
-                cardNumber={card.cardNumber}
-            />
-          </div>
+          <option key={card.id} value={card.id}>
+            {`${card.cardHolderName} **** ${card.cardNumber.slice(-4)}`}
+          </option>
         ))}
-      </div>
-    </>
+      </select>
+    </div>
   );
 }
