@@ -19,3 +19,4 @@ export async function getAllAddressesByUser(id: number) {
     const addresses = await db.select().from(DeliveryAddress).where(eq(DeliveryAddress.userId, id))
     return addresses
 }
+

@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { getUserID } from "../../../lib/cookie"
 import { getUserInfo } from "../actions/users";
-import AddAddress from "../components/AddAddress";
 import AddCard from "../components/AddCard";
 import { getAllAddressesByUser } from "../actions/deliveryAddress";
 import AddressDisplayCard from "../components/AddressDisplayCard";
 import { getAllCardsByUser } from "../actions/card";
 import CardDisplayCard from "../components/CardDisplayCard";
+import ProfileTabs from "../components/ProfileTabs";
 
 export default async function profile() {
     const userID = await getUserID();
@@ -19,48 +19,23 @@ export default async function profile() {
         );
     }
 
-    const user = await getUserInfo(userID);
-    const addresses = await getAllAddressesByUser(userID)
-    const cards = await getAllCardsByUser(userID)
+    const [user, addresses, cards] = await Promise.all([
+        getUserInfo(userID),
+        getAllAddressesByUser(userID),
+        getAllCardsByUser(userID)
+    ]);
 
     return (
-        <main>
-            <h1 className="text-center text-4xl text-black pt-10">User Account Info</h1>
-            <h2 className="text-2xl text-black p-5">Name: {user.name}</h2>
-            <h2 className="text-2xl text-black p-5">Email: {user.email}</h2>
-            <h2 className="text-2xl text-black p-5">Username: {user.username}</h2>
-            <Link href="/updateprofile" className="btn">Update Profile Info</Link>
-
-            <h1>Delivery Addresses</h1>
-            <div className="m-5">
-                <>{addresses.map((address) => (
-                    <div key={address.id}>
-                        <AddressDisplayCard
-                        addressLine={address.addressLine}
-                        country={address.country}
-                        state={address.state}
-                        city={address.city}
-                        zipcode={address.zipcode}
-                        />
-                    </div>
-                ))} </>
-            </div>
-            <AddAddress/>
-            <h1>Payment Methods</h1>
-            <div className="m-5" >
-                <>{cards.map((card) => (
-                    <div key={card.id}>
-                        <CardDisplayCard
-                        cardHolderName={card.cardHolderName}
-                        cardNumber={card.cardNumber}
-                        expirDate={card.expirDate}
-                        />
-                    </div>
-                ))} </>
-            </div>
-            <AddCard/>
-
-        </main>
-    );
+    <main className="p-5">
+        <div className="flex items-center justify-center relative mb-10 h-12">
+            <Link href="/"
+            className="absolute left-0 text-orange text-5xl hover:text-gray-700 transition">
+                &lt;
+            </Link>
+            <h1 className="text-4xl font-bold">My Profile</h1>
+        </div>
+      <ProfileTabs user={user} addresses={addresses} cards={cards} />
+    </main>
+  );
 
 }

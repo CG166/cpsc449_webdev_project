@@ -1,21 +1,27 @@
 'use client'
 
+import Link from "next/link";
+
 export default function Updateprofile() {
   
   return (
-    <main>
-        <div className="bg-purple-300 w-full min-h-screen flex items-center justify-center">
-            <div className="bg-white p-8 rounded flex flex-col w-[80vh] self-center h-[90vh] overflow-auto;">
-                <h1 className="text-black text-2xl font-mono;" >Update Profile</h1>
+    <main className="bg-purple-300 w-full min-h-screen flex items-center justify-center">
+      <div className="bg-white p-8 rounded flex flex-col w-[80vh] h-[90vh] overflow-auto shadow-lg">
+        <div className="flex items-center justify-between mb-6">
+          <Link href="/profile" className="text-orange-500 text-3xl font-bold hover:text-gray-700 transition">
+            &lt;
+          </Link>
+          <h1 className="text-orange text-3xl font-mono text-center flex-1">Update Profile</h1>
+          <div className="w-6"></div>
                 <form >
-                    <label htmlFor="name" >Name</label><br />
-                    <input className="box" id="name" type="text" name="name" /><br />
+                    <label htmlFor="name" className="mb-1 font-semibold">Name</label><br />
+                    <input className="box rounded-lg border border-gray-300 p-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" id="name" type="text" name="name" /><br />
 
-                    <label htmlFor="email ">Email</label><br />
-                    <input className="box" id="email" type="email" name="email" /><br />
+                    <label htmlFor="email " className="mb-1 font-semibold">Email</label><br />
+                    <input className="box rounded-lg border border-gray-300 p-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" id="email" type="email" name="email" /><br />
 
-                    <label htmlFor="username" >Username</label><br />
-                    <input className="box" id="username" name="username" type="text"/><br />
+                    <label htmlFor="username" className="mb-1 font-semibold">Username</label><br />
+                    <input className="box rounded-lg border border-gray-300 p-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" id="username" name="username" type="text"/><br />
 
                     {/* Submit Button */}
                     <button className="btn" type="submit" >Update</button>
