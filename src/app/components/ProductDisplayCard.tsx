@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { getProductInfo } from "../actions/products";
 import { removeProductFromCart } from "../actions/shoppingCart";
+import Image from "next/image";
 
 type ProductDisplayCardProps = {
     productID: number
@@ -64,6 +65,7 @@ export default function ProductDisplayCard({productID, UID } : ProductDisplayCar
                     <h1 className="text-black text-l font-light;" >Price: ${product.price}</h1>
                     <h1 className="text-black text-l font-light;" >In Stock: {product.stock}</h1>
                     <p className="text-black text-m font-light;" >{product.description}</p>
+                    <Image src={product.imageUrl} alt={product.name} width={200} height={200} className="rounded-xl mt-3"/>
                     <div>
                         {UID ? 
                         <button className="btn" onClick={() => removeProduct(product.id)} >Remove</button>

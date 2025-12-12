@@ -8,9 +8,6 @@ export default function Updateprofile() {
     <main className="bg-purple-300 w-full min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded flex flex-col w-[80vh] h-[90vh] overflow-auto shadow-lg">
         <div className="flex items-center justify-between mb-6">
-          <Link href="/profile" className="text-orange-500 text-3xl font-bold hover:text-gray-700 transition">
-            &lt;
-          </Link>
           <h1 className="text-orange text-3xl font-mono text-center flex-1">Update Profile</h1>
           <div className="w-6"></div>
         </div>

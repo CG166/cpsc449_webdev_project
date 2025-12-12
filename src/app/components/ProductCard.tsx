@@ -31,12 +31,13 @@ export default function ProductCard ({ name, description, price, stock, UserID, 
     <div className="p-8 w-full h-full">
         <div className="bg-white rounded-3xl shadow-lg min-h-[240px] min-w-[240px] w-full">
                 <div className="p-8"> 
+                    <Image src={imageUrl} alt={name} width={240} height={240} className="rounded-xl mb-4"/>
                     <h1 className="text-black text-xl font-mono font-light;" >{ name }</h1>
-                    <h1 className="text-black text-l font-light;" >Price: { price }</h1>
+                    <h1 className="text-black text-l font-light;" >Price: ${ price }</h1>
                     <h1 className="text-black text-l font-light;" >In Stock: { stock }</h1>
                     <p className="text-black text-m font-light;" >{ description }</p> 
                     <button className="btn" onClick={() => addProduct()} >Add</button>
-                    <Image src={imageUrl} alt={name} width={240} height={240}/>
+                    
                 </div>     
         </div>
     </div>

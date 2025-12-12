@@ -70,7 +70,7 @@ export default function ProfileTabs({ user, addresses: initialAddresses, cards: 
           }`}
           onClick={() => setActiveTab("addresses")}
         >
-          Delivery Addresses
+          Shipping Address
         </button>
         <button
           className={`px-4 py-2 text-left ${
@@ -106,7 +106,7 @@ export default function ProfileTabs({ user, addresses: initialAddresses, cards: 
 
         {activeTab === "addresses" && (
           <div className="bg-white shadow rounded p-8 w-full max-w-3xl mx-auto mb-6 mt-10">
-            <h1 className="text-4xl mb-6 font-bold text-center">Delivery Addresses</h1>
+            <h1 className="text-4xl mb-6 font-bold text-center">Shipping Address</h1>
             {addresses.length === 0 ? (
               <p>No saved addresses.</p>
             ) : (
