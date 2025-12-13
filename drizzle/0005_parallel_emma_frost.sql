@@ -1,0 +1,1 @@
+ALTER TABLE `shoppingcart_item` ADD `quantity` int DEFAULT 1 NOT NULL;

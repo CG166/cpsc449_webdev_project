@@ -28,13 +28,13 @@ export default async function shoppingcart() {
     
     return (
         <main>
-        <div className="w-full min-h-screen p-6 flex flex-col">
-        <div className="flex items-center justify-center relative mb-10 h-12">
-        <Link href="/" className="absolute top-4 left-4 text-orange-500 text-3xl font-bold hover:text-gray-700 transition">
-          ← Back to Menu
-        </Link>
-        <h1 className="text-4xl font-bold mt-30 text-orange-500">Shopping Cart</h1>
-        <div className="w-6"></div>
+            <div className="w-full min-h-screen p-6 flex flex-col">
+            <div className="flex items-center justify-center relative mb-10 h-12">
+            <Link href="/" className="absolute top-4 left-4 text-orange-500 text-3xl font-bold hover:text-gray-700 transition">
+                ← Back to Menu
+            </Link>
+            <h1 className="text-4xl font-bold mt-30 text-orange-500">Shopping Cart</h1>
+            <div className="w-6"></div>
       </div>
             {productIDs.map((id,index) => (
                 <ProductDisplayCard key={`${id}-${index}`} productID={id} UID={userID}/>

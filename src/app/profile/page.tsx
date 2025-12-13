@@ -25,7 +25,7 @@ export default async function profile() {
     ]);
 
     return (
-    <main className="p-5">
+    <main className="p-5 bg-purple-200">
         <div className="flex items-center justify-center relative mb-10 h-12">
                 <Link href="/" className="absolute top-4 left-4 text-orange-500 text-3xl font-bold hover:text-gray-700 transition">
                     ← Back to Menu

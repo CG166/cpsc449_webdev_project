@@ -19,7 +19,8 @@ import { int, mysqlEnum, mysqlTable, varchar, decimal, datetime}
    stock: int("stock").notNull(),
    price: decimal("price", { precision: 10, scale: 2 }).notNull(),
    category: mysqlEnum("category", ['WOMEN', 'MEN', 'KIDS'] as const),
-   imageUrl: varchar("image_url", { length: 255 }).notNull()
+   imageUrl: varchar("image_url", { length: 255 }).notNull(),
+   quantity: int("quantity").notNull().default(1)
  });
 
  export const ShoppingCart = mysqlTable("shopping_cart", {
@@ -37,6 +38,7 @@ import { int, mysqlEnum, mysqlTable, varchar, decimal, datetime}
   productId: int("product_id")
     .notNull()
     .references(() => Products.id),
+  quantity: int("quantity").notNull().default(1),
 });
 
 export const PaymentMethod = mysqlTable("payment_method", {

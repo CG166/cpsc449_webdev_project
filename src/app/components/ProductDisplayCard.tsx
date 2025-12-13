@@ -1,12 +1,13 @@
 'use client'
 import { useEffect, useState } from "react";
 import { getProductInfo } from "../actions/products";
-import { removeProductFromCart } from "../actions/shoppingCart";
+import { addProductToCart,removeProductFromCart, getCartProduct } from "../actions/shoppingCart";
 import Image from "next/image";
 
 type ProductDisplayCardProps = {
     productID: number
     UID?: number,
+    quantity?: number;
 
 }
 
@@ -18,6 +19,7 @@ type Product = {
   price: number;
   category: "WOMEN" | "MEN" | "KIDS";
   imageUrl: string;
+  quantity?: number;
 };
 
 export default function ProductDisplayCard({productID, UID } : ProductDisplayCardProps) {
@@ -25,23 +27,30 @@ export default function ProductDisplayCard({productID, UID } : ProductDisplayCar
 
     useEffect(() => {
         async function getProduct() {
-            const product = await getProductInfo(productID)
+            const productData = await getProductInfo(productID);
+            let qty = 1;
+
+            if (UID) {
+            const cartData = await getCartProduct(UID, productID);
+            if (cartData) qty = cartData.quantity;
+            }
+
             const formattedProduct: Product = {
-            id: product.id,
-            name: product.name,
-            description: product.description,
-            stock: product.stock,
-            price: Number(product.price),
-            category: product.category ?? "WOMEN",
-            imageUrl: product.imageUrl
-        };
-        setProduct(formattedProduct);
-        }
+            id: productData.id,
+            name: productData.name,
+            description: productData.description,
+            stock: productData.stock,
+            price: Number(productData.price),
+            category: productData.category ?? "WOMEN",
+            imageUrl: productData.imageUrl,
+            quantity: qty,
+            };
 
-        getProduct();
+    setProduct(formattedProduct);
+  }
 
-    }, [productID]);
-
+  getProduct();
+}, [productID, UID]);
 
     async function removeProduct(PID: number) {
         if(UID) {
@@ -65,7 +74,12 @@ export default function ProductDisplayCard({productID, UID } : ProductDisplayCar
                     <h1 className="text-black text-l font-light;" >Price: ${product.price}</h1>
                     <h1 className="text-black text-l font-light;" >In Stock: {product.stock}</h1>
                     <p className="text-black text-m font-light;" >{product.description}</p>
+                    <div className="flex gap-2 mt-2 items-center">
+                        <label>Qty:</label>
+                        <span>{product.quantity}</span>
+                    </div>
                     <Image src={product.imageUrl} alt={product.name} width={200} height={200} className="rounded-xl mt-3"/>
+                    
                     <div>
                         {UID ? 
                         <button className="btn" onClick={() => removeProduct(product.id)} >Remove</button>

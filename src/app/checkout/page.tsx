@@ -1,7 +1,7 @@
 import { getUserID } from "../../../lib/cookie";
 import { getAllCardsByUser } from "../actions/card";
 import { getAllAddressesByUser } from "../actions/deliveryAddress";
-import { getAllProductsByUser } from "../actions/shoppingCart";
+import { getAllProductsByUser, getAllProductsByUserWithQty } from "../actions/shoppingCart";
 import CheckoutDisplay from "../components/CheckoutDisplay";
 
 export default async function Checkout() {
