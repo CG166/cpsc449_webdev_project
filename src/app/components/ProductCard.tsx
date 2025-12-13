@@ -44,7 +44,7 @@ export default function ProductCard({ name, description, price, stock, UserID, P
         <h1 className="text-black text-lg font-light mt-1">Price: ${price}</h1>
         <h1 className="text-black text-lg font-light">In Stock: {stock}</h1>
 
-        <div className="flex gap-2 mt-2 items-center">
+        {/* <div className="flex gap-2 mt-2 items-center">
           <label>Qty:</label>
           <input
             type="number"
@@ -54,7 +54,7 @@ export default function ProductCard({ name, description, price, stock, UserID, P
             onChange={(e) => setQuantity(Number(e.target.value))}
             className="border rounded-md w-16 text-center"
           />
-        </div>
+        </div> */}
 
         <button className="btn mt-2" onClick={addProduct}>
           Add to Cart

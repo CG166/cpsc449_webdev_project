@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import SelectAddress from "../components/SelectAddress";
 import SelectCard from "../components/SelectCard";
 import { DeliveryAddress, PaymentMethod } from "../db/schema";
@@ -20,6 +21,7 @@ type CheckoutClientProps = {
 export default function CheckoutClient({ addresses, cards, productIDs }: CheckoutClientProps) {
   const [addressId, setAddressId] = useState<number | null>(null);
   const [cardId, setCardId] = useState<number | null>(null);
+  const router = useRouter();
 
   return (
     <div className="w-full min-h-screen p-6 flex flex-col">
@@ -44,18 +46,19 @@ export default function CheckoutClient({ addresses, cards, productIDs }: Checkou
           <h2 className="text-xl font-semibold mb-4">Ordering Items</h2>
           <div className="flex flex-col gap-3 overflow-y-auto max-h-[70vh]">
             {productIDs.map((id, index) => (
-              <ProductDisplayCard key={`${id}-${index}`} productID={id} />
+              <ProductDisplayCard key={`${id}-${index}`} productID={id} compact />
             ))}
           </div>
 
           <button
             className="btn mt-4 self-start"
-            onClick={() => {
+            onClick={async () => {
               if (!addressId || !cardId) {
                 alert("Please select a delivery address and payment method!");
                 return;
               }
-              createOrder(productIDs, cardId, addressId);
+              await createOrder(productIDs, cardId, addressId);
+              router.push("/thankyoupage");
             }}
           >
             Place Order

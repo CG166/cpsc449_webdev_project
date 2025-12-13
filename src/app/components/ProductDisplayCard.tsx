@@ -8,7 +8,7 @@ type ProductDisplayCardProps = {
     productID: number
     UID?: number,
     quantity?: number;
-
+    compact?: boolean
 }
 
 type Product = {
@@ -22,7 +22,7 @@ type Product = {
   quantity?: number;
 };
 
-export default function ProductDisplayCard({productID, UID } : ProductDisplayCardProps) {
+export default function ProductDisplayCard({productID, UID, compact } : ProductDisplayCardProps) {
     const [product, setProduct] = useState<Product | null>(null);
 
     useEffect(() => {
@@ -32,7 +32,6 @@ export default function ProductDisplayCard({productID, UID } : ProductDisplayCar
 
             if (UID) {
             const cartData = await getCartProduct(UID, productID);
-            if (cartData) qty = cartData.quantity;
             }
 
             const formattedProduct: Product = {
@@ -68,6 +67,15 @@ export default function ProductDisplayCard({productID, UID } : ProductDisplayCar
 
     return (
         <div className="p-8 w-full h-full">
+        {compact ? (
+        <div className="bg-white rounded-3xl shadow-lg min-w-[160px]">
+            <div className="p-4 flex flex-col items-center gap-2">
+                <Image src={product.imageUrl} alt={product.name} width={80} height={80} className="rounded-xl"/>
+                <h1 className="text-black text-sm font-mono font-light text-center">{product.name}</h1>
+                <h1 className="text-black text-sm font-light">${product.price.toFixed(2)}</h1>
+            </div>
+        </div>
+        ) : (
         <div className="bg-white rounded-3xl shadow-lg min-h-[240px] min-w-[240px] w-full">
                 <div className="p-8"> 
                     <h1 className="text-black text-xl font-mono font-light;" >{product.name}</h1>
@@ -87,6 +95,7 @@ export default function ProductDisplayCard({productID, UID } : ProductDisplayCar
                     </div>
                 </div>     
         </div>
+        )}
     </div>
     );
 }
