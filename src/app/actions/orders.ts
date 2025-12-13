@@ -16,7 +16,7 @@ export async function createOrder(PIDs: number[], PMID: number, DAID: number, ) 
         await db.insert(Orders).values({userId: UID, productId: PID, paymentMethodId: PMID, DeliveryAddressId: DAID});
         await removeProductFromCart(UID, PID);
     }
-    redirect("/");
+    redirect("/thankyoupage");
 }
 
 export async function getOrderInfo(OID: number) {
@@ -35,6 +35,7 @@ export async function getOrderInfo(OID: number) {
     productPrice: product.price,
     cardNumber: payment.cardNumber,
     orderedAt: order.orderedAt,
+    imageUrl: product.imageUrl
   };
 }
 

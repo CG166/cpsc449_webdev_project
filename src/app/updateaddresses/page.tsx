@@ -8,28 +8,44 @@ export default function AddAddress() {
     const router = useRouter();
     const[data, setData] = useState({ addressLine: '', country: '', state: '' , city: '', zipcode: ''});
       
-      const updateField = (field: string, value: string) => {
-        setData((prev) => ({ ...prev, [field]: value}));
-      };
-    
-      const reset = () => {
-        setData({ addressLine: '', country: '', state: '' , city: '', zipcode: ''});
-      }
-    
-      async function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-    
-        if (!data.addressLine.trim() || !data.country.trim() || !data.state.trim() || !data.city.trim() || !data.zipcode.trim()) {
-          return;
-        }
-    
-        await addAddress(data.addressLine, data.country, data.state, data.city, data.zipcode);
-        reset();
-        alert("New Delivery Address Created!");
+    const updateField = (field: string, value: string) => {
+      setData((prev) => ({ ...prev, [field]: value}));
+    };
+  
+    const reset = () => {
+      setData({ addressLine: '', country: '', state: '' , city: '', zipcode: ''});
+    }
+  
+    async function handleSubmit(e: React.FormEvent) {
+      e.preventDefault();
 
-        router.push('/profile');
-    
+      if (!data.addressLine.trim()) {
+        alert("Please enter the address line");
+        return;
       }
+      if (!data.country.trim()) {
+        alert("Please enter the country");
+        return;
+      }
+      if (!data.state.trim()) {
+        alert("Please enter the state");
+        return;
+      }
+      if (!data.city.trim()) {
+        alert("Please enter the city");
+        return;
+      }
+      if (!data.zipcode.trim()) {
+        alert("Please enter the zipcode");
+        return;
+      }
+
+      await addAddress(data.addressLine, data.country, data.state, data.city, data.zipcode);
+      reset();
+      alert("New Delivery Address Created!");
+      router.push('/profile');
+    }
+
     return (
     <main className="bg-purple-300 w-full min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded flex flex-col w-[80vh] h-[90vh] overflow-auto shadow-lg">
@@ -86,12 +102,15 @@ export default function AddAddress() {
           <div className="flex flex-col">
             <label htmlFor="zipcode" className="mb-1 font-semibold">Zipcode</label>
             <input
-              className="box rounded-lg border border-gray-300 p-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="box rounded-lg border border-gray-300 p-1 focus:outline-none focus:ring-2 focus:ring-blue-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               id="zipcode"
-              type="text"
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
               value={data.zipcode}
-              onChange={(e) => updateField("zipcode", e.target.value)}
+              onChange={(e) => updateField("zipcode", e.target.value.replace(/\D/g, ""))}
             />
+
           </div>
 
           <button className="btn mt-4" type="submit">

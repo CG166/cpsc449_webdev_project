@@ -19,7 +19,12 @@ export default function Login() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    if (!data.username.trim() || !data.password.trim()) {
+    if (!data.username.trim()) {
+      alert("Please enter your username");
+      return;
+    }
+    if (!data.password.trim()) {
+      alert("Please enter your password");
       return;
     }
 
@@ -33,7 +38,7 @@ export default function Login() {
       alert("Login failed!");
       console.log("Login failed:", loginAttempt.message);
     }
-  }
+}
 
   return (
     <main className="bg-purple-300 w-full min-h-screen flex justify-center items-center">

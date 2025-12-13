@@ -31,7 +31,7 @@ export default function ProductDisplayCard({productID, UID, compact } : ProductD
             let qty = 1;
 
             if (UID) {
-            const cartData = await getCartProduct(UID, productID);
+            await getCartProduct(UID, productID);
             }
 
             const formattedProduct: Product = {
@@ -45,11 +45,11 @@ export default function ProductDisplayCard({productID, UID, compact } : ProductD
             quantity: qty,
             };
 
-    setProduct(formattedProduct);
-  }
+            setProduct(formattedProduct);
+        }
 
-  getProduct();
-}, [productID, UID]);
+        getProduct();
+    }, [productID, UID]);
 
     async function removeProduct(PID: number) {
         if(UID) {
@@ -68,11 +68,13 @@ export default function ProductDisplayCard({productID, UID, compact } : ProductD
     return (
         <div className="p-8 w-full h-full">
         {compact ? (
-        <div className="bg-white rounded-3xl shadow-lg min-w-[160px]">
-            <div className="p-4 flex flex-col items-center gap-2">
-                <Image src={product.imageUrl} alt={product.name} width={80} height={80} className="rounded-xl"/>
-                <h1 className="text-black text-sm font-mono font-light text-center">{product.name}</h1>
-                <h1 className="text-black text-sm font-light">${product.price.toFixed(2)}</h1>
+        <div className="bg-white rounded-3xl shadow-lg w-full">
+            <div className="p-4 flex items-center gap-3">
+                <Image src={product.imageUrl} alt={product.name} width={60} height={60} className="rounded-xl"/>
+                <div className="flex flex-col items-end ml-auto">
+                    <h1 className="text-black text-sm font-mono font-light">{product.name}</h1>
+                    <h1 className="text-black text-sm font-light">${product.price.toFixed(2)}</h1>
+                </div>
             </div>
         </div>
         ) : (

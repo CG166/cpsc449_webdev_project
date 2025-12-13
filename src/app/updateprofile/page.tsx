@@ -45,6 +45,7 @@ export default async function Updateprofile() {
               id="email"
               type="email"
               name="email"
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]{3,}$"
               defaultValue={user.email}
             /><br />
             <label htmlFor="username" className="mb-1 font-semibold">Username</label><br />

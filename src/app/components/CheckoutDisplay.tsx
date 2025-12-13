@@ -58,7 +58,6 @@ export default function CheckoutClient({ addresses, cards, productIDs }: Checkou
                 return;
               }
               await createOrder(productIDs, cardId, addressId);
-              router.push("/thankyoupage");
             }}
           >
             Place Order

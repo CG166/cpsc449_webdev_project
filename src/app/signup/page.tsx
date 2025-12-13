@@ -19,7 +19,20 @@ export default function Signup() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    if (!data.name.trim() || !data.email.trim() || !data.username.trim() || !data.password.trim()) {
+    if (!data.name.trim()) {
+      alert("Please enter your name");
+      return;
+    }
+    if (!data.email.trim()) {
+      alert("Please enter your email");
+      return;
+    }
+    if (!data.username.trim()) {
+      alert("Please enter your username");
+      return;
+    }
+    if (!data.password.trim()) {
+      alert("Please enter your password");
       return;
     }
 
@@ -29,6 +42,7 @@ export default function Signup() {
     console.log("User Creation Successful!");
     router.push('/');
   }
+
 
   return (
     <main className="bg-purple-300 w-full min-h-screen flex items-center justify-center">
@@ -57,6 +71,7 @@ export default function Signup() {
               className="box rounded-2xl border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
               id="email"
               type="email"
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
               value={data.email}
               onChange={(e) => updateField("email", e.target.value)}
             />

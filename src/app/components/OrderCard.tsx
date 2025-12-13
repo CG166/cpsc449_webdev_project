@@ -1,4 +1,5 @@
 import { getOrderInfo } from "../actions/orders";
+import Image from "next/image";
 
 type OrderCardProps = {
     OID: number;
@@ -22,10 +23,19 @@ export default async function OrderCard({OID} : OrderCardProps) {
     
     return (
         <main className="flex bg-white gap-3 p-5 rounded-2xl border border-black">
+          <Image
+              src={orderInfo.imageUrl}
+              alt={orderInfo.productName}
+              width={80}
+              height={80}
+              className="rounded-xl"
+            />
+          <div className="flex flex-col gap-2">
             <h1>Product: {orderInfo.productName}</h1>
             <h1>Price: {orderInfo.productPrice}</h1>
             <h1>Card: **** **** **** {orderInfo.cardNumber.slice(-4)}</h1>
             <h1>Ordered At: {formatToPST(orderInfo.orderedAt)}</h1>
+          </div>
         </main>
     )
 }

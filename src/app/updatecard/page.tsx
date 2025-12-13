@@ -21,22 +21,30 @@ export default function AddCard() {
 
     const cardNumberOnlyDigits = data.cardNumber.replace(/\D/g, "");
     const cvcOnlyDigits = data.cvc.replace(/\D/g, "");
-    if (
-      !data.cardHolderName.trim() ||
-      cardNumberOnlyDigits.length !== 16 ||
-      data.expirDate.trim().length !== 5 ||
-      (cvcOnlyDigits.length !== 3 && cvcOnlyDigits.length !== 4)) 
-      {
-      alert("Please enter valid card details: 16-digit card number, MM/YY expiration, and 3-4 digit CVC.");
+
+    if (!data.cardHolderName.trim()) {
+      alert("Please enter the card holder name");
+      return;
+    }
+    if (cardNumberOnlyDigits.length !== 16) {
+      alert("Please enter a valid 16-digit card number");
+      return;
+    }
+    if (data.expirDate.trim().length !== 5) {
+      alert("Please enter a valid expiration date (MM/YY)");
+      return;
+    }
+    if (cvcOnlyDigits.length !== 3 && cvcOnlyDigits.length !== 4) {
+      alert("Please enter a valid 3-4 digit CVC");
       return;
     }
 
     await addCard(data.cardHolderName, data.cardNumber, data.expirDate, data.cvc);
     reset();
     alert("New payment method added!");
-
     router.push('/profile');
   }
+
 
   return (
     <main className="bg-purple-300 w-full min-h-screen flex items-center justify-center">

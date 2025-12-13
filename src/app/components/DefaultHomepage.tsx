@@ -14,75 +14,75 @@ type Product = { id: string; name: string; price: number; category: Category; };
 type CartLine = { productId: string; quantity: number; };
 
 // ---------- Tiny Demo Catalog ----------
-const CATALOG: Product[] = [
-  { id: "s1", name: "Classic Tee",      price: 2200,  category: "shirts" },
-  { id: "p1", name: "Slim Chinos",      price: 4600,  category: "pants"  },
-  { id: "sh1",name: "Everyday Sneakers",price: 6900,  category: "shoes"  },
-  { id: "o1", name: "Crew Socks (3pk)", price: 1400,  category: "other"  },
-];
+// const CATALOG: Product[] = [
+//   { id: "s1", name: "Classic Tee",      price: 2200,  category: "shirts" },
+//   { id: "p1", name: "Slim Chinos",      price: 4600,  category: "pants"  },
+//   { id: "sh1",name: "Everyday Sneakers",price: 6900,  category: "shoes"  },
+//   { id: "o1", name: "Crew Socks (3pk)", price: 1400,  category: "other"  },
+// ];
 
 const formatCurrency = (cents: number) =>
   (cents / 100).toLocaleString(undefined, { style: "currency", currency: "USD" });
 
 export default function DefaultHomepage() {
   // ---------- Cart State ----------
-  const [cartOpen, setCartOpen] = useState(false);
-  const [cart, setCart] = useState<CartLine[]>([]);
+  // const [cartOpen, setCartOpen] = useState(false);
+  // const [cart, setCart] = useState<CartLine[]>([]);
 
-  const productById = useMemo(() => {
-    const m = new Map<string, Product>();
-    for (const p of CATALOG) m.set(p.id, p);
-    return m;
-  }, []);
+  // // const productById = useMemo(() => {
+  // //   const m = new Map<string, Product>();
+  // //   for (const p of CATALOG) m.set(p.id, p);
+  // //   return m;
+  // // }, []);
 
-  const cartWithProducts = useMemo(() => {
-    return cart
-      .map(l => ({ line: l, product: productById.get(l.productId)! }))
-      .filter(x => Boolean(x.product));
-  }, [cart, productById]);
+  // const cartWithProducts = useMemo(() => {
+  //   return cart
+  //     .map(l => ({ line: l, product: productById.get(l.productId)! }))
+  //     .filter(x => Boolean(x.product));
+  // }, [cart, productById]);
 
-  const subtotal = cartWithProducts.reduce((sum, x) => sum + x.product.price * x.line.quantity, 0);
-  const TAX_RATE = 0.085;
-  const tax = Math.round(subtotal * TAX_RATE);
-  const total = subtotal + tax;
+  // const subtotal = cartWithProducts.reduce((sum, x) => sum + x.product.price * x.line.quantity, 0);
+  // const TAX_RATE = 0.085;
+  // const tax = Math.round(subtotal * TAX_RATE);
+  // const total = subtotal + tax;
 
   // ---------- Cart Ops ----------
-  const addToCart = (productId: string, qty = 1) => {
-    setCart(prev => {
-      const i = prev.findIndex(l => l.productId === productId);
-      if (i === -1) return [...prev, { productId, quantity: qty }];
-      const next = [...prev];
-      next[i] = { ...next[i], quantity: next[i].quantity + qty };
-      return next;
-    });
-    setCartOpen(true);
-  };
+  // const addToCart = (productId: string, qty = 1) => {
+  //   setCart(prev => {
+  //     const i = prev.findIndex(l => l.productId === productId);
+  //     if (i === -1) return [...prev, { productId, quantity: qty }];
+  //     const next = [...prev];
+  //     next[i] = { ...next[i], quantity: next[i].quantity + qty };
+  //     return next;
+  //   });
+  //   setCartOpen(true);
+  // };
 
-  const setQuantity = (productId: string, qty: number) => {
-    setCart(prev => prev.map(l => l.productId === productId ? { ...l, quantity: Math.max(1, qty) } : l));
-  };
+  // const setQuantity = (productId: string, qty: number) => {
+  //   setCart(prev => prev.map(l => l.productId === productId ? { ...l, quantity: Math.max(1, qty) } : l));
+  // };
 
-  const removeFromCart = (productId: string) => {
-    setCart(prev => prev.filter(l => l.productId !== productId));
-  };
+  // const removeFromCart = (productId: string) => {
+  //   setCart(prev => prev.filter(l => l.productId !== productId));
+  // };
 
-  const clearCart = () => setCart([]);
+  // const clearCart = () => setCart([]);
 
-  const checkout = () => {
+  // const checkout = () => {
     // Placeholder checkout
-    alert(`Order placed!\n\n${JSON.stringify({
-      lines: cartWithProducts.map(({ line, product }) => ({
-        productId: line.productId,
-        name: product.name,
-        unitPrice: product.price,
-        quantity: line.quantity,
-        lineTotal: product.price * line.quantity,
-      })),
-      subtotal, tax, total, placedAt: new Date().toISOString()
-    }, null, 2)}`);
-    clearCart();
-    setCartOpen(false);
-  };
+  //   alert(`Order placed!\n\n${JSON.stringify({
+  //     lines: cartWithProducts.map(({ line, product }) => ({
+  //       productId: line.productId,
+  //       name: product.name,
+  //       unitPrice: product.price,
+  //       quantity: line.quantity,
+  //       lineTotal: product.price * line.quantity,
+  //     })),
+  //     subtotal, tax, total, placedAt: new Date().toISOString()
+  //   }, null, 2)}`);
+  //   clearCart();
+  //   setCartOpen(false);
+  // };
 
   return (
     // Apply the animated background fade here:
@@ -101,7 +101,7 @@ export default function DefaultHomepage() {
           </p>
 
           {/* Quick add examples to show the cart works right away */}
-          <div className="mt-4 flex flex-wrap gap-2">
+          {/* <div className="mt-4 flex flex-wrap gap-2">
             {CATALOG.map(p => (
               <button
                 key={p.id}
@@ -112,7 +112,7 @@ export default function DefaultHomepage() {
                 Add {p.name}
               </button>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -132,16 +132,16 @@ export default function DefaultHomepage() {
       </div>
 
       {/* ---------- Floating Cart Button ---------- */}
-      <button
+      {/* <button
         onClick={() => setCartOpen(true)}
         className="fixed bottom-4 right-4 px-4 py-2 rounded-2xl border bg-white/80 backdrop-blur hover:bg-white shadow"
         aria-label="Open cart"
       >
         🛒 Cart ({cart.reduce((n, l) => n + l.quantity, 0)})
-      </button>
+      </button> */}
 
       {/* ---------- Cart Drawer ---------- */}
-      <div
+      {/* <div
         className={`fixed inset-y-0 right-0 w-full sm:w-[28rem] bg-white border-l z-30 transform transition-transform ${
           cartOpen ? "translate-x-0" : "translate-x-full"
         }`}
@@ -191,10 +191,10 @@ export default function DefaultHomepage() {
                 ))}
               </ul>
             )}
-          </div>
+          </div> */}
 
           {/* Totals */}
-          <div className="border-t p-4 space-y-2 text-sm">
+          {/* <div className="border-t p-4 space-y-2 text-sm">
             <div className="flex justify-between"><span>Subtotal</span><span>{formatCurrency(subtotal)}</span></div>
             <div className="flex justify-between"><span>Tax {(TAX_RATE*100).toFixed(1)}%</span><span>{formatCurrency(tax)}</span></div>
             <div className="flex justify-between font-semibold text-base"><span>Total</span><span>{formatCurrency(total)}</span></div>
@@ -210,16 +210,16 @@ export default function DefaultHomepage() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Backdrop */}
-      {cartOpen && (
+      {/* {cartOpen && (
         <button
           className="fixed inset-0 bg-black/30 backdrop-blur-[1px] z-20"
           aria-hidden
           onClick={() => setCartOpen(false)}
         />
-      )}
+      )} */}
     </main>
   );
 }
