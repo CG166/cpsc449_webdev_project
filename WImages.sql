@@ -1,4 +1,7 @@
-CREATE DATABASE IF NOT EXISTS shop_db;
+DROP DATABASE IF EXISTS shop_db;
+
+CREATE DATABASE shop_db;
+
 USE shop_db;
 
 -- USERS TABLE
@@ -17,8 +20,8 @@ CREATE TABLE products (
     description VARCHAR(255) NOT NULL,
     stock INT NOT NULL,
     price DECIMAL(10,2) NOT NULL,
-    category ENUM('WOMEN','MEN','KIDS') NOT NULL,
-    image_url VARCHAR(255),
+    category ENUM('WOMEN', 'MEN', 'KIDS'),
+    image_url VARCHAR(255) NOT NULL,
     quantity INT NOT NULL DEFAULT 1
 );
 
@@ -34,6 +37,7 @@ CREATE TABLE shoppingcart_item (
     id INT AUTO_INCREMENT PRIMARY KEY,
     cart_id INT NOT NULL,
     product_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
     FOREIGN KEY (cart_id) REFERENCES shopping_cart(id),
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
