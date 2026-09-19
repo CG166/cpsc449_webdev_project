@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shopsite",
+  title: "ShopSite",
   description: "Online shopping application",
 };
 
